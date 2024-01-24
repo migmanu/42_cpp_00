@@ -6,7 +6,7 @@ Contact::Contact ( void )
 	return;
 }
 
-Contact::Contact ( std::string name, int *nbr )
+Contact::Contact ( std::string name, int nbr )
 {
 	std::cout << "Contact class constructed parameterized" << std::endl;
 	contact_name = name;

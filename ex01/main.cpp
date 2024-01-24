@@ -1,10 +1,11 @@
 #include "main.hpp"
 #include "Contact.hpp"
+#include "Phonebook.hpp"
 #include <string>
 
 int	main(void)
 {
-	std::string name = "Maria";
-	Contact new_contact(name, 234);
+	Contact new_contact("Maria", 234);
+	PhoneBook	phonebook(new_contact);
 	return (0);
 }

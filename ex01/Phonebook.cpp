@@ -22,7 +22,7 @@ PhoneBook::~PhoneBook(void)
 	return;
 }
 
-void	PhoneBook::printOneContact(Contact contact_to_print)
+void	printOneContact(Contact contact_to_print)
 {
 	std::cout << "Name: " << contact_to_print.contact_name
 		<< std::endl
