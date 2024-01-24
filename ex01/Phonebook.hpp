@@ -2,6 +2,7 @@
 # define PHONEBOOK_H
 
 # include <iostream>
+#include <string>
 #include "Contact.hpp"
 
 class PhoneBook
@@ -9,18 +10,18 @@ class PhoneBook
 	public:
 
 		PhoneBook(void );
-		PhoneBook(Contact new_contact);
+		PhoneBook(std::string name, int nbr);
 		~PhoneBook(void);
 
-		void printContacts(void);
-		void printContacts(int i);
+		void	addContact(std::string name, int nbr);
+		void	printContacts(void);
+		void	printContacts(int i);
 
 	private:
 
-		Contact *contact_list;
+		Contact contact_list[8];
 		int		contact_count;
 		void	printOneContact(Contact contact_to_print);
-		void	addContact(Contact new_contact);
 };
 
 #endif

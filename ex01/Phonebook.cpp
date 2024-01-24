@@ -1,5 +1,6 @@
 #include "Phonebook.hpp"
 #include "Contact.hpp"
+#include <string>
 
 PhoneBook::PhoneBook(void)
 {
@@ -8,11 +9,11 @@ PhoneBook::PhoneBook(void)
 	return;
 }
 
-PhoneBook::PhoneBook(Contact new_contact)
+PhoneBook::PhoneBook(std::string name, int nbr)
 {
 	PhoneBook::contact_count = 0;
-	PhoneBook::addContact(new_contact);
 	std::cout << "PhoneBook class constructed parameterized" << std::endl;
+	PhoneBook::addContact(name, nbr);
 	return;
 }
 
@@ -22,7 +23,7 @@ PhoneBook::~PhoneBook(void)
 	return;
 }
 
-void	printOneContact(Contact contact_to_print)
+void	PhoneBook::printOneContact(Contact contact_to_print)
 {
 	std::cout << "Name: " << contact_to_print.contact_name
 		<< std::endl
@@ -49,8 +50,10 @@ void	PhoneBook::printContacts(int i)
 	printOneContact(PhoneBook::contact_list[i - 1]);
 }
 
-void	PhoneBook::addContact(Contact new_contact)
+void	PhoneBook::addContact(std::string name, int nbr)
 {
+	Contact new_contact(name, nbr);
+
 	if (PhoneBook::contact_count > 7)
 	{
 		std::cout << "Phonebook full. Replace "

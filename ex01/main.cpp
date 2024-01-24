@@ -5,7 +5,8 @@
 
 int	main(void)
 {
-	Contact new_contact("Maria", 234);
-	PhoneBook	phonebook(new_contact);
+	PhoneBook	new_phonebook("Maria", 234234);
+
+	new_phonebook.addContact("Rax", 29);
 	return (0);
 }
