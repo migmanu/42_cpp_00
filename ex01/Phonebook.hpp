@@ -2,18 +2,19 @@
 # define PHONEBOOK_H
 
 # include <iostream>
-#include <string>
-#include "Contact.hpp"
+# include <string>
+# include "Contact.hpp"
 
 class PhoneBook
 {
 	public:
 
 		PhoneBook(void );
-		PhoneBook(std::string name, int nbr);
 		~PhoneBook(void);
 
-		void	addContact(std::string name, int nbr);
+		void	addContact(std::string new_name, std::string new_last_name,
+		   std::string new_nickname, std::string new_phone_number,
+		   std::string new_secret);
 		void	printContacts(void);
 		void	printContacts(int i);
 

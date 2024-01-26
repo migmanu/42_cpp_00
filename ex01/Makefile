@@ -20,3 +20,6 @@ all : $(OBJS)
 
 clean : 
 	@rm $(OBJ_NAME)
+
+re : clean all
+
