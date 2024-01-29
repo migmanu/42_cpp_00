@@ -1,5 +1,5 @@
 #OBJS specifies which files to compile as part of the project
-OBJS = main.cpp Contact.cpp Phonebook.cpp
+OBJS = main.cpp Contact.cpp PhoneBook.cpp
 
 #CC specifies which compiler we're using
 CC = g++
