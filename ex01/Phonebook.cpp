@@ -1,5 +1,6 @@
 #include "Phonebook.hpp"
 #include "Contact.hpp"
+#include <iomanip>
 #include <string>
 
 PhoneBook::PhoneBook(void)
@@ -15,11 +16,26 @@ PhoneBook::~PhoneBook(void)
 	return;
 }
 
-void	PhoneBook::printOneContact(Contact contact_to_print)
+// If i smaller than 0 prints all info for one contact. Otherwise
+// prints required by subject in 10 width
+void	PhoneBook::printOneContact(Contact contact_to_print, int i)
 {
-	std::cout << "Name: " << contact_to_print.name
-		<< std::endl
-		<< "Number: " << contact_to_print.phone_number
+	if (i < 0)
+	{
+		std::cout 
+			<< contact_to_print.name << std::endl
+			<< contact_to_print.last_name << std::endl
+			<< contact_to_print.nickname << std::endl
+			<< contact_to_print.phone_number << std::endl
+			<< contact_to_print.secret << std::endl;
+		return;
+
+	}
+	std::cout
+		<< std::setw(10) << std::left << i
+		<< std::setw(10) << std::left << contact_to_print.name
+		<< std::setw(10) << std::left << contact_to_print.last_name
+		<< std::setw(10) << std::left << contact_to_print.nickname
 		<< std::endl;
 }
 
@@ -27,19 +43,29 @@ void	PhoneBook::printContacts(void)
 {
 	for (int i = 0; i < PhoneBook::contact_count; i++)
 	{
-		printOneContact(PhoneBook::contact_list[i]);
+		printOneContact(PhoneBook::contact_list[i], i);
 	}
-	return;
-}
 
-void	PhoneBook::printContacts(int i)
-{
-	if (i < 1 || i > 8)
+	std::cout << "Input contact's index for more info." << std::endl;
+	int input;
+	std::cin >> input;
+
+	if (input > contact_count)
 	{
-		std::cout << "Contacts in phonebook range from 1 to 8" << std::endl;
+		std::cout
+			<< "There are only "
+			<< contact_count
+			<< "contacts!"
+			<< std::endl;
 		return;
 	}
-	printOneContact(PhoneBook::contact_list[i - 1]);
+	if (input < 0)
+	{
+		std::cout << "Index cannot be smaller than 0!" << std::endl;
+		return;
+	}
+	printOneContact(PhoneBook::contact_list[input], -1);
+	return;
 }
 
 void	PhoneBook::addContact(std::string new_name, std::string new_last_name,

@@ -16,13 +16,12 @@ class PhoneBook
 		   std::string new_nickname, std::string new_phone_number,
 		   std::string new_secret);
 		void	printContacts(void);
-		void	printContacts(int i);
 
 	private:
 
 		Contact contact_list[8];
 		int		contact_count;
-		void	printOneContact(Contact contact_to_print);
+		void	printOneContact(Contact contact_to_print, int i);
 };
 
 #endif

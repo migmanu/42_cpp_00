@@ -39,7 +39,7 @@ int	command_router(PhoneBook *phonebook, std::string input)
 	}
 	else if (input.compare("SEARCH") == 0)
 	{
-		*(phonebook)::
+		phonebook->printContacts();
 	}
 	else
 	{
