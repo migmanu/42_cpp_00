@@ -28,7 +28,11 @@ void	add_contact(PhoneBook *phonebook)
 
 int	command_router(PhoneBook *phonebook, std::string input)
 {
-	if (input.compare("EXIT") == 0)
+	if (input[0] == '\0')
+	{
+		return (0);
+	}
+	else if (input.compare("EXIT") == 0)
 	{
 		std::cout << "Exiting now" << std::endl;
 		return (1);
@@ -43,7 +47,8 @@ int	command_router(PhoneBook *phonebook, std::string input)
 	}
 	else
 	{
-		std::cout << "Acceptable commands are 'ADD', 'SEARCH' and 'EXIT'"
+		std::cout
+			<< "Acceptable commands are 'ADD', 'SEARCH' and 'EXIT'"
 			<< std::endl;
 	}
 	return (0);
@@ -55,15 +60,21 @@ int	main(void)
 
 	std::cout << std::endl;
 	std::cout << "Welcome to The Phonebook" << std::endl;
-	std::cout << "Input a command" << std::endl;
 	while (1)
 	{
+		std::cout
+			<< std::endl
+			<< "\u001b[31m"
+			<< "Input a command"
+			<< "\u001b[37m"
+			<< std::endl;
 		std::string	input;
 		std::cin >> input;
 		if (command_router(&phonebook, input) == 1)
 		{
-			return (0);
+			return (1);
 		}
+		input.erase(input.begin(), input.end());
 	}
 	return (0);
 }

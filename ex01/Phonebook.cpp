@@ -1,6 +1,8 @@
 #include "Phonebook.hpp"
 #include "Contact.hpp"
+#include <cstdint>
 #include <iomanip>
+#include <limits>
 #include <string>
 
 PhoneBook::PhoneBook(void)
@@ -23,10 +25,15 @@ void	PhoneBook::printOneContact(Contact contact_to_print, int i)
 	if (i < 0)
 	{
 		std::cout 
+			<< "Name: "
 			<< contact_to_print.name << std::endl
+			<< "Last name: "
 			<< contact_to_print.last_name << std::endl
+			<< "Nickname: "
 			<< contact_to_print.nickname << std::endl
+			<< "Phone number: "
 			<< contact_to_print.phone_number << std::endl
+			<< "Darkest secret: "
 			<< contact_to_print.secret << std::endl;
 		return;
 
@@ -45,26 +52,43 @@ void	PhoneBook::printContacts(void)
 	{
 		printOneContact(PhoneBook::contact_list[i], i);
 	}
-
-	std::cout << "Input contact's index for more info." << std::endl;
+	
 	int input;
-	std::cin >> input;
-
-	if (input > contact_count)
+	while (1)
 	{
 		std::cout
-			<< "There are only "
-			<< contact_count
-			<< "contacts!"
+			<< "Input contact's index for more info. "
+			<< "Enter a negative number to go back" 
 			<< std::endl;
-		return;
+		std::cin >> input;
+		if (!std::cin.good())
+		{
+			std::cout
+				<< "Please input a number!" 
+				<< std::endl;
+			std::cin.clear();
+			std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+			continue;
+		}
+		else if (input > contact_count)
+		{
+			std::cout
+				<< "There are only "
+				<< contact_count
+				<< " contacts!"
+				<< std::endl;
+			continue;
+		}
+		else if (input < 0)
+		{
+			return;
+		}
+		else
+		{
+			printOneContact(PhoneBook::contact_list[input], -1);
+			return;
+		}
 	}
-	if (input < 0)
-	{
-		std::cout << "Index cannot be smaller than 0!" << std::endl;
-		return;
-	}
-	printOneContact(PhoneBook::contact_list[input], -1);
 	return;
 }
 
