@@ -9,7 +9,7 @@ class PhoneBook
 {
 	public:
 
-		PhoneBook(void );
+		PhoneBook(void);
 		~PhoneBook(void);
 
 		void	addContact(std::string new_name, std::string new_last_name,

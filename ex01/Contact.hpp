@@ -6,11 +6,11 @@
 class	Contact
 {
 	public:
-		Contact (void);
-		Contact (std::string new_name, std::string new_last_name,
+		Contact(void);
+		Contact(std::string new_name, std::string new_last_name,
 		   std::string new_nickname, std::string new_phone_number,
 		   std::string new_secret);
-		~Contact (void);
+		~Contact(void);
 		
 		std::string	name;
 		std::string	last_name;
