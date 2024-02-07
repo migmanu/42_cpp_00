@@ -6,7 +6,7 @@ CC = g++
 
 #COMPILER_FLAGS specifies the additional compilation options we're using
 # -w suppresses all warnings
-COMPILER_FLAGS = -Werror -Wextra -Wall
+COMPILER_FLAGS = -Werror -Wextra -Wall -std=c++98 -g
 
 #LINKER_FLAGS specifies the libraries we're linking against
 LINKER_FLAGS = 
