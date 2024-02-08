@@ -1,15 +1,14 @@
-#include "main.hpp"
-#include "Contact.hpp"
 #include "PhoneBook.hpp"
+#include <iostream>
 #include <string>
 
-void	add_contact(PhoneBook *phonebook)
+void add_contact(PhoneBook *phonebook)
 {
-	std::string	input_name;
-	std::string	input_last_name;
-	std::string	input_nickname;
-	std::string	input_phone_number;
-	std::string	input_secret;
+	std::string input_name;
+	std::string input_last_name;
+	std::string input_nickname;
+	std::string input_phone_number;
+	std::string input_secret;
 
 	std::cout << "Adding a new contact.\nName" << std::endl;
 	std::cin >> input_name;
@@ -22,11 +21,10 @@ void	add_contact(PhoneBook *phonebook)
 	std::cout << "Darkest secret:" << std::endl;
 	std::cin >> input_secret;
 
-	phonebook->addContact(input_name, input_last_name, input_nickname,
-		input_phone_number, input_secret);
+	phonebook->addContact(input_name, input_last_name, input_nickname, input_phone_number, input_secret);
 }
 
-int	command_router(PhoneBook *phonebook, std::string input)
+int command_router(PhoneBook *phonebook, std::string input)
 {
 	if (input[0] == '\0')
 	{
@@ -47,28 +45,24 @@ int	command_router(PhoneBook *phonebook, std::string input)
 	}
 	else
 	{
-		std::cout
-			<< "Acceptable commands are 'ADD', 'SEARCH' and 'EXIT'"
-			<< std::endl;
+		std::cout << "Acceptable commands are 'ADD', 'SEARCH' and 'EXIT'" << std::endl;
 	}
 	return (0);
 }
 
-int	main(void)
+int main(void)
 {
-	PhoneBook	phonebook;
+	PhoneBook phonebook;
 
 	std::cout << std::endl;
 	std::cout << "Welcome to The Phonebook" << std::endl;
 	while (1)
 	{
-		std::cout
-			<< std::endl
-			<< "\u001b[31m"
-			<< "Input a command"
-			<< "\u001b[37m"
-			<< std::endl;
-		std::string	input;
+		std::cout << std::endl
+				  << "\u001b[31m"
+				  << "Input a command"
+				  << "\u001b[37m" << std::endl;
+		std::string input;
 		std::cin >> input;
 		if (command_router(&phonebook, input) == 1)
 		{

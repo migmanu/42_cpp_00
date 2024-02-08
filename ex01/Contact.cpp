@@ -1,14 +1,13 @@
-#include "main.hpp"
+#include "Contact.hpp"
 
-Contact::Contact (void)
+Contact::Contact(void)
 {
 	std::cout << "Contact class contructed" << std::endl;
 	return;
 }
 
-Contact::Contact (std::string new_name, std::string new_last_name,
-				  std::string new_nickname, std::string new_phone_number,
-				  std::string new_secret)
+Contact::Contact(std::string new_name, std::string new_last_name, std::string new_nickname,
+				 std::string new_phone_number, std::string new_secret)
 {
 	std::cout << "Contact class constructed parameterized" << std::endl;
 	name = new_name;
@@ -19,7 +18,7 @@ Contact::Contact (std::string new_name, std::string new_last_name,
 	return;
 }
 
-Contact::~Contact (void)
+Contact::~Contact(void)
 {
 	std::cout << "Contact class destructed" << std::endl;
 	return;
