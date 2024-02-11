@@ -6,7 +6,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
-#define MAX_CONTACTS 2
+#define MAX_CONTACTS 8
 
 class PhoneBook
 {
@@ -24,7 +24,8 @@ class PhoneBook
 		(
 			std::string new_name,
 			std::string new_last_name,
-			std::string new_nickname,std::string new_phone_number,
+			std::string new_nickname,
+			std::string new_phone_number,
 			std::string new_secret
 		);
 	void printContacts(void);
