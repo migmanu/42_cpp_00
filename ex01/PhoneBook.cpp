@@ -64,6 +64,41 @@ int PhoneBook::commandRouter(std::string input)
 	return (0);
 }
 
+// gets input from user until input is valid. Flag 'alpha' for only
+// alpha characters, flag 'digit' for only digits
+std::string PhoneBook::getInput(std::string option)
+{
+	std::string input;
+	if (option.compare("alpha") == 0)
+	{
+		while (1)
+		{
+			std::cout << ">> ";
+			std::getline(std::cin, input);
+			if (isAlphaString(input))
+			{
+				return (input);
+			}
+			std::cout << "Only alpha characters allowed" << std::endl;
+		}
+	}
+	else if (option.compare("digit") == 0)
+	{
+		while (1)
+		{
+			std::cout << ">> ";
+			std::getline(std::cin, input);
+			if (isDigitString(input))
+			{
+				return (input);
+			}
+			std::cout << "Only numbers allowed" << std::endl;
+		}
+	}
+	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+	return (input);
+}
+
 void PhoneBook::addContactCommand(void)
 {
 	std::string input_name;
@@ -73,15 +108,15 @@ void PhoneBook::addContactCommand(void)
 	std::string input_secret;
 
 	std::cout << "Adding a new contact.\n1. Name" << std::endl;
-	std::cin >> input_name;
+	input_name = getInput("alpha");
 	std::cout << "2. Last name:" << std::endl;
-	std::cin >> input_last_name;
+	input_last_name = getInput("alpha");
 	std::cout << "3. Nickname:" << std::endl;
-	std::cin >> input_nickname;
+	input_nickname = getInput("alpha");
 	std::cout << "4. Phone number:" << std::endl;
-	std::cin >> input_phone_number;
+	input_phone_number = getInput("digit");
 	std::cout << "5. Darkest secret:" << std::endl;
-	std::cin >> input_secret;
+	input_secret = getInput("alpha");
 
 	Contact new_contact(
 		input_name,
@@ -119,21 +154,10 @@ void PhoneBook::printOneContact(Contact contact_to_print, int i)
 		return;
 	}
 	std::cout
-		<< std::setw(10)
-		<< std::left
-		<< i
-		<< "|"
-		<< std::setw(10)
-		<< std::left
-		<< contact_to_print.getName()
-		<< "|" << std::setw(10)
-		<< std::left
-		<< contact_to_print.getLastName()
-		<< "|"
-		<< std::setw(10)
-		<< std::left
-		<< contact_to_print.getNickname()
-		<< "|"
+		<< std::setw(10) << std::left << i << "|"
+		<< std::setw(10) << std::left << contact_to_print.getName() << "|"
+		<< std::setw(10) << std::left << contact_to_print.getLastName() << "|"
+		<< std::setw(10) << std::left << contact_to_print.getNickname() << "|"
 		<< std::endl;
 }
 

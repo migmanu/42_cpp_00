@@ -17,6 +17,7 @@ class PhoneBook
   private:
 	int commandRouter(std::string input);
 	void addContactCommand(void);
+	std::string getInput(std::string option);
 	void addContact
 		(
 			std::string new_name,
@@ -29,5 +30,8 @@ class PhoneBook
 	Contact contact_list[8];
 	int contact_count;
 };
+
+bool isAlphaString(std::string str);
+bool isDigitString(std::string str);
 
 #endif
