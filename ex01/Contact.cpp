@@ -18,7 +18,6 @@ Contact::Contact(std::string new_name, std::string new_last_name, std::string ne
 
 Contact::~Contact(void)
 {
-	std::cout << "Contact class destructed" << std::endl;
 	return;
 }
 

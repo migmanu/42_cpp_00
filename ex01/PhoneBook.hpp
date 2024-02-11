@@ -5,6 +5,8 @@
 #include <cstdlib>
 #include <iostream>
 #include <string>
+#include <vector>
+#define MAX_CONTACTS 2
 
 class PhoneBook
 {
@@ -27,7 +29,8 @@ class PhoneBook
 		);
 	void printContacts(void);
 	void printOneContact(Contact contact_to_print, int i);
-	Contact contact_list[8];
+	void printOneField(std::string field);
+	std::vector<Contact> contact_list;
 	int contact_count;
 };
 

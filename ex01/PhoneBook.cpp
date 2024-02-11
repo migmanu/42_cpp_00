@@ -12,7 +12,6 @@ PhoneBook::PhoneBook(void)
 
 PhoneBook::~PhoneBook(void)
 {
-	std::cout << "PhoneBook class destructed" << std::endl;
 	return;
 }
 
@@ -30,11 +29,13 @@ void	PhoneBook::initPhoneBook(void)
 		std::cout << std::endl
 				  << "Input a command ";
 		std::string input;
-		std::cin >> input;
+		std::getline(std::cin, input);
 		if (PhoneBook::commandRouter(input) == 1)
 		{
 			return;
 		}
+		std::cout << std::endl << "Press any key to continue..." << std::endl;
+		std::cin.ignore().get();
 		system("clear");
 		input.erase(input.begin(), input.end());
 	}
@@ -107,7 +108,8 @@ void PhoneBook::addContactCommand(void)
 	std::string input_phone_number;
 	std::string input_secret;
 
-	std::cout << "Adding a new contact.\n1. Name" << std::endl;
+	std::cout << "Adding a new contact." << std::endl
+		<< "1. Name" << std::endl;
 	input_name = getInput("alpha");
 	std::cout << "2. Last name:" << std::endl;
 	input_last_name = getInput("alpha");
@@ -125,19 +127,33 @@ void PhoneBook::addContactCommand(void)
 		input_phone_number,
 		input_secret);
 
-	if (PhoneBook::contact_count > 7)
+	if (PhoneBook::contact_count >= MAX_CONTACTS)
 	{
-		PhoneBook::contact_list[0] = PhoneBook::contact_list[1];
-		return;
+		contact_list.erase(contact_list.begin());
+		contact_list.push_back(new_contact);
 	}
-	PhoneBook::contact_list[PhoneBook::contact_count] = new_contact;
-	PhoneBook::contact_count++;
+	else
+	{
+		contact_list.push_back(new_contact);
+		PhoneBook::contact_count++;
+	}
 	std::cout
 		<< "Added "
 		<< new_contact.getName()
 		<< " to phonebook. Now have "
 		<< PhoneBook::contact_count
 		<< " contacts" << std::endl;
+}
+
+void PhoneBook::printOneField(std::string field)
+{
+	std::string toPrint = field;
+	if (field.length() > 10)
+	{
+		toPrint.resize(9);
+		toPrint.append(".");
+	}
+	std::cout << "|" << std::setw(10) << std::right << toPrint;
 }
 
 // If i smaller than 0 prints all info for one contact. Otherwise
@@ -153,12 +169,11 @@ void PhoneBook::printOneContact(Contact contact_to_print, int i)
 				  << "Darkest secret: " << contact_to_print.getSecret() << std::endl;
 		return;
 	}
-	std::cout
-		<< std::setw(10) << std::left << i << "|"
-		<< std::setw(10) << std::left << contact_to_print.getName() << "|"
-		<< std::setw(10) << std::left << contact_to_print.getLastName() << "|"
-		<< std::setw(10) << std::left << contact_to_print.getNickname() << "|"
-		<< std::endl;
+	std::cout << "|" << std::setw(10) << std::right << i;
+	printOneField(contact_to_print.getName());
+	printOneField(contact_to_print.getLastName());
+	printOneField(contact_to_print.getNickname());
+	std::cout << std::endl;
 }
 
 void PhoneBook::printContacts(void)
