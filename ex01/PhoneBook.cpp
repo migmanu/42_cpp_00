@@ -34,10 +34,9 @@ void	PhoneBook::initPhoneBook(void)
 		{
 			return;
 		}
-		std::cout << std::endl << "Press any key to continue..." << std::endl;
-		std::cin.ignore().get();
-		system("clear");
 		input.erase(input.begin(), input.end());
+		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+		system("clear");
 	}
 }
 
@@ -129,12 +128,15 @@ void PhoneBook::addContactCommand(void)
 
 	if (PhoneBook::contact_count >= MAX_CONTACTS)
 	{
-		contact_list.erase(contact_list.begin());
-		contact_list.push_back(new_contact);
+		for (int i = 0; i < contact_count - 1; i++)
+		{
+			contact_list[i] = contact_list[i + 1];
+		}
+		contact_list[contact_count - 1] = new_contact;
 	}
 	else
 	{
-		contact_list.push_back(new_contact);
+		contact_list[contact_count] = new_contact;
 		PhoneBook::contact_count++;
 	}
 	std::cout
@@ -167,6 +169,8 @@ void PhoneBook::printOneContact(Contact contact_to_print, int i)
 				  << "Nickname: "  << contact_to_print.getNickname() << std::endl
 				  << "Phone number: " << contact_to_print.getPhoneNumber() << std::endl
 				  << "Darkest secret: " << contact_to_print.getSecret() << std::endl;
+		std::cout << std::endl << "Press any key to continue..." << std::endl;
+		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 		return;
 	}
 	std::cout << "|" << std::setw(10) << std::right << i;

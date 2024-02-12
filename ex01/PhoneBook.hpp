@@ -31,7 +31,7 @@ class PhoneBook
 	void printContacts(void);
 	void printOneContact(Contact contact_to_print, int i);
 	void printOneField(std::string field);
-	std::vector<Contact> contact_list;
+	Contact contact_list[8];
 	int contact_count;
 };
 
