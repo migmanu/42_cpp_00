@@ -15,7 +15,7 @@ LINKER_FLAGS =
 OBJ_NAME = phonebook
 
 #This is the target that compiles our executable
-all : $(OBJS)
+$(OBJ_NAME) : $(OBJS)
 	@$(CC) $(OBJS) $(COMPILER_FLAGS) $(LINKER_FLAGS) -o $(OBJ_NAME)
 
 clean : 
