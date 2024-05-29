@@ -13,12 +13,15 @@ int main(int argc, char *argv[])
 	for (int i = 1; i < argc; i++)
 	{
 		std::string str = argv[i];
-	  std::string::iterator it;
+		std::string::iterator it;
 		for (it = str.begin(); it != str.end(); it++)
 		{
-			std::cout << static_cast<char>(std::toupper(*it));
+			if (std::isalpha(*it))
+				std::cout << static_cast<char>(std::toupper(*it));
+			else
+				std::cout << *it;
 		}
-		if (*(it + 1) != '\0')
+		if (i < argc)
 			std::cout << ' ';
 	}
 	std::cout << std::endl;
