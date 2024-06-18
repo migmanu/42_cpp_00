@@ -1,15 +1,34 @@
-OBJS = main.cpp Contact.cpp PhoneBook.cpp utils.cpp
-
+CFLAGS = -Werror -Wextra -Wall -std=c++98 -g
 CC = c++
+SRCS = main.cpp Contact.cpp PhoneBook.cpp utils.cpp
+OBJS = $(SRCS:.cpp=.o)
+EXEC = phonebook
 
-COMPILER_FLAGS = -Werror -Wextra -Wall -std=c++98 -g
+# Default rule
+all: $(EXEC)
 
-LINKER_FLAGS = 
+# Rule to create the executable
+$(EXEC): $(OBJS)
+	@$(CC) -o $@ $^
 
-OBJ_NAME = phonebook
+# Rule to create object files
+%.o: %.cpp
+	@$(CC) $(CFLAGS) -c $< -o $@
 
-$(OBJ_NAME) : $(OBJS)
-	@$(CC) $(OBJS) $(COMPILER_FLAGS) $(LINKER_FLAGS) -o $(OBJ_NAME)
+# Rule to clean object files
+clean:
+	@rm -f $(OBJS)
 
-clean : 
-	@rm $(OBJ_NAME)
+# Rule to clean everything
+fclean: clean
+	@rm -f $(EXEC)
+
+# Rule to recompile everything
+re: fclean all
+
+# Rule to run program
+run : all
+	./$(EXEC)
+
+# Phony targets
+.PHONY: all clean fclean re run
